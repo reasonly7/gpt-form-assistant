@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse, HttpStatusCode } from "axios";
+import axios, { AxiosError, AxiosResponse, HttpStatusCode } from 'axios';
 
 export interface ResponseData<T> {
   data: T;
@@ -8,7 +8,7 @@ export interface ResponseData<T> {
 }
 
 const request = axios.create({
-  baseURL: "/api",
+  baseURL: '/api',
 });
 
 request.interceptors.request.use((request) => {
@@ -37,48 +37,18 @@ const httpCodeMessgeMap: Record<number, string> = {};
 
 request.interceptors.response.use(
   (response: AxiosResponse<ResponseData<any>>) => {
-    if (response.config.responseType === "blob") {
-      return response.data;
-    }
-    const { message: msg, code } = response.data as ResponseData<unknown>;
-    if (code >= 200 && code < 300) {
-      msg && message.success(msg);
-    } else {
-      message.error(serverCodeMessageMap[code]);
-    }
+    // if (response.config.responseType === "blob") {
+    //   return response.data;
+    // }
+    // const { message: msg, code } = response.data as ResponseData<unknown>;
+    // if (code >= 200 && code < 300) {
+    //   msg && message.success(msg);
+    // } else {
+    //   message.error(serverCodeMessageMap[code]);
+    // }
 
     return response.data.data;
   },
-
-  (error: AxiosError<ResponseData<unknown>>) => {
-    if (!error.isAxiosError || !error.response) {
-      return Promise.resolve();
-    }
-
-    const { status, statusText, data } = error.response;
-
-    if (!data) {
-      message.error(httpCodeMessgeMap[status] || `${status} ${statusText}`);
-      return Promise.resolve();
-    }
-
-    const { message: serverMessage, code } = data;
-    const tip = () =>
-      message.error(
-        serverCodeMessageMap[code] || serverMessage || "Unknown Server Error."
-      );
-
-    switch (status) {
-      case HttpStatusCode.Unauthorized:
-        delete localStorage.access_token;
-        // router.replace("/login");
-        tip();
-        break;
-      default:
-        tip();
-    }
-    return Promise.resolve();
-  }
 );
 
 export function get<T>(...params: Parameters<typeof request.get>) {

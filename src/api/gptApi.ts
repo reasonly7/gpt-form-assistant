@@ -1,9 +1,9 @@
 import { post } from './request';
 
-const prefix = '/bailian-gpt';
+const prefix = '/ali-bailian';
 
 export const gptApi = {
   bailianGPT(prompt: string) {
-    return post<string>(prefix, { prompt });
+    return post<string>(`${prefix}/translator`, { prompt });
   },
 };
