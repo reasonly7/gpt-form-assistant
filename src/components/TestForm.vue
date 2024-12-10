@@ -2,6 +2,7 @@
 import { Form, FormInstance, FormItem } from 'ant-design-vue';
 import { reactive, ref } from 'vue';
 import AInput from './antd-components/AInput.vue';
+import { gptApi } from '@/api/gptApi';
 
 const formRef = ref<FormInstance | null>(null);
 const formModel = reactive({
@@ -13,6 +14,14 @@ const formModel = reactive({
   snake_case: '',
 });
 const loading = ref(false);
+
+const blurHandler = async () => {
+  formModel.zh = formModel.zh.trim();
+  if (formModel.zh) {
+    const res = await gptApi.bailianGPT(formModel.zh);
+    console.log(res);
+  }
+};
 </script>
 
 <template>
@@ -25,7 +34,11 @@ const loading = ref(false);
     labelAlign="left"
   >
     <FormItem name="zh" label="Chinese" required>
-      <AInput v-model:value="formModel.zh"></AInput>
+      <AInput
+        v-model:value="formModel.zh"
+        autofocus
+        @blur="blurHandler"
+      ></AInput>
     </FormItem>
 
     <FormItem name="en" label="English" required>
