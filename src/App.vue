@@ -1,11 +1,25 @@
 <script setup lang="ts">
-import { Button } from 'ant-design-vue'
+import TestForm from './components/TestForm.vue';
 </script>
 
 <template>
-  <div>
-    <Button type="primary">Hello, World!</Button>
+  <div class="page-wrapper">
+    <div class="form-wrapper">
+      <TestForm></TestForm>
+    </div>
   </div>
 </template>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.page-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .form-wrapper {
+    width: 300px;
+    box-sizing: border-box;
+  }
+}
+</style>
