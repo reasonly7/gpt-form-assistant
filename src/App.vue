@@ -5,7 +5,7 @@ import TestForm from './components/TestForm.vue';
 <template>
   <div class="page-wrapper">
     <div class="form-wrapper">
-      <TestForm></TestForm>
+      <TestForm />
     </div>
   </div>
 </template>

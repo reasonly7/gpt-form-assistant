@@ -20,31 +20,31 @@ const loading = ref(false);
     :model="formModel"
     ref="formRef"
     layout="horizontal"
-    :labelCol="{ span: 7 }"
-    :wrapperCol="{ span: 17 }"
+    :labelCol="{ span: 9 }"
+    :wrapperCol="{ span: 15 }"
     labelAlign="left"
   >
-    <FormItem name="zh" label="Chinese">
+    <FormItem name="zh" label="Chinese" required>
       <AInput v-model:value="formModel.zh"></AInput>
     </FormItem>
 
-    <FormItem name="en" label="English">
+    <FormItem name="en" label="English" required>
       <AInput v-model:value="formModel.en" :loading="loading" />
     </FormItem>
 
-    <FormItem name="PascalCase" label="PascalCase">
+    <FormItem name="PascalCase" label="PascalCase" required>
       <AInput v-model:value="formModel.PascalCase" :loading="loading" />
     </FormItem>
 
-    <FormItem name="camelCase" label="camelCase">
+    <FormItem name="camelCase" label="camelCase" required>
       <AInput v-model:value="formModel.camelCase" :loading="loading" />
     </FormItem>
 
-    <FormItem name="kebab-case" label="kebab-case">
+    <FormItem name="kebab-case" label="kebab-case" required>
       <AInput v-model:value="formModel['kebab-case']" :loading="loading" />
     </FormItem>
 
-    <FormItem name="snake_case" label="snake_case">
+    <FormItem name="snake_case" label="snake_case" required>
       <AInput v-model:value="formModel.snake_case" :loading="loading" />
     </FormItem>
   </Form>
