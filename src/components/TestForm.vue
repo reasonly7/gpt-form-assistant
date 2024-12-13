@@ -10,7 +10,6 @@ type FormModelKey =
   | 'PascalCase'
   | 'camelCase'
   | 'kebab-case'
-  | 'snake_case';
 type FormModelType = Record<FormModelKey, string>;
 
 const flag = ref(false);
