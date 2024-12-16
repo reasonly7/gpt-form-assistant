@@ -4,3 +4,4 @@ A project template using Vue + Vite + Ant Design Vue（一个 vue +vite + ant-de
 
 See [./src/components/TestForm.vue](./src/components/TestForm.vue)
 
+![](./preview.gif)
